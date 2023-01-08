@@ -14,6 +14,26 @@ package frc.robot;
  */
 public final class Constants {
   public static class OperatorConstants {
-    public static final int kDriverControllerPort = 0;
+    public static final int controllerPort = 0;
+
+    public static final double throttleMultiplier = 0.1;
+    public static final double rotateMultiplier = 0.1;
+
+    public static final double poleCatSpeed = 0.2;
+  }
+
+  public static class IdentifierConstants {
+    public static final int driveFL = 0;
+    public static final int driveFR = 0;
+    public static final int driveBL = 0;
+    public static final int driveBR = 0;
+
+    // Catapult 
+    public static final int solenoid = 0;
+
+    // Polecat 
+    public static final int polecat = 0;
+    public static final int polecatUpperSwitch = 0;
+    public static final int polecatLowerSwitch = 0;
   }
 }
