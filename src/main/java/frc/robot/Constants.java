@@ -20,6 +20,8 @@ public final class Constants {
     public static final double rotateMultiplier = 0.1;
 
     public static final double poleCatSpeed = 0.2;
+    public static final double poleCatMaxDist = 5;
+    public static final double poleCatMinDist = 0;
   }
 
   public static class IdentifierConstants {
@@ -35,5 +37,12 @@ public final class Constants {
     public static final int polecat = 0;
     public static final int polecatUpperSwitch = 0;
     public static final int polecatLowerSwitch = 0;
+  }
+
+  public static class DriveConstants {
+    public static final double trackWidth = 0;
+
+    // If gear ratio is wrong, use 8.45
+    public static final double encoder = 4096 * (1./10.75) * (6 * 2.54 * (2*Math.PI));
   }
 }

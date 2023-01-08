@@ -5,11 +5,14 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.IdentifierConstants;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import frc.robot.Constants.OperatorConstants;
+import com.revrobotics.SparkMaxRelativeEncoder.Type;
+
 import edu.wpi.first.wpilibj.DigitalInput;
+import com.revrobotics.RelativeEncoder;
 
 public class Polecat extends SubsystemBase {
   /** Creates a new Polecat. */
@@ -17,10 +20,15 @@ public class Polecat extends SubsystemBase {
   protected final DigitalInput upperLimitSwitch;
   protected final DigitalInput lowerLimitSwitch;
 
+  protected final RelativeEncoder poleCatEncoder;
+
   public Polecat() {
     poleCat = new CANSparkMax(IdentifierConstants.polecat, MotorType.kBrushless);
     upperLimitSwitch = new DigitalInput(IdentifierConstants.polecatUpperSwitch);
     lowerLimitSwitch = new DigitalInput(IdentifierConstants.polecatLowerSwitch);
+    poleCatEncoder = poleCat.getEncoder(Type.kQuadrature, 4096);
+    poleCatEncoder.setPositionConversionFactor(DriveConstants.encoder);
+    poleCatEncoder.setVelocityConversionFactor(DriveConstants.encoder);
   }
 
   public enum Direction {
@@ -28,8 +36,8 @@ public class Polecat extends SubsystemBase {
     kDown,
   }
 
-  public void movePoleCat() {
-    poleCat.set(OperatorConstants.poleCatSpeed);
+  public void movePoleCat(double speed) {
+    poleCat.set(speed);
   }
 
   public boolean isLimited(Direction direction) {
