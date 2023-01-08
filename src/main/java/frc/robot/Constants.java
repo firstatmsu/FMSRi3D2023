@@ -25,19 +25,19 @@ public final class Constants {
   }
 
   public static class IdentifierConstants {
-    public static final int driveFL = 0;
-    public static final int driveFR = 0;
-    public static final int driveBL = 0;
-    public static final int driveBR = 0;
+    public static final int driveFL = 1;
+    public static final int driveFR = 2;
+    public static final int driveBL = 3;
+    public static final int driveBR = 4;
 
     // Catapult 
     public static final int solenoidForward = 0;
     public static final int solenoidReverse = 1;
 
     // Polecat 
-    public static final int polecat = 0;
-    public static final int polecatUpperSwitch = 0;
-    public static final int polecatLowerSwitch = 0;
+    public static final int polecat = 5;
+    public static final int polecatUpperSwitch = 1;
+    public static final int polecatLowerSwitch = 2;
   }
 
   public static class DriveConstants {

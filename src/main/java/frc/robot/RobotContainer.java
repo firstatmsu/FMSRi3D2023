@@ -31,9 +31,7 @@ public class RobotContainer {
     // Pneumatic catapult
     InstantCommand launch = new InstantCommand(catapult::launch, catapult);
     InstantCommand retract = new InstantCommand(catapult::retract, catapult);
-    driverController.a().onTrue(launch);
-    driverController.b().onTrue(retract);
-    // driverController.a().onTrue(launch).onFalse(retract);
+    driverController.a().onTrue(launch).onFalse(retract);
 
     // Polecat
     PoleCatCommand poleUp = new PoleCatCommand(polecat, Direction.kUp);
