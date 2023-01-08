@@ -31,7 +31,8 @@ public final class Constants {
     public static final int driveBR = 0;
 
     // Catapult 
-    public static final int solenoid = 0;
+    public static final int solenoidForward = 0;
+    public static final int solenoidReverse = 1;
 
     // Polecat 
     public static final int polecat = 0;
