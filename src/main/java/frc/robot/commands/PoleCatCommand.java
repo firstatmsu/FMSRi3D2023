@@ -31,7 +31,7 @@ public class PoleCatCommand extends CommandBase {
         polecat.movePoleCat(OperatorConstants.poleCatSpeed);
         break;
       case kDown:
-        polecat.movePoleCat(OperatorConstants.poleCatSpeed);
+        polecat.movePoleCat(-OperatorConstants.poleCatSpeed);
         break;
       default:
         break;

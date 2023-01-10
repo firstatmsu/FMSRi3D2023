@@ -29,8 +29,8 @@ public class TankDrive extends CommandBase {
 
   @Override
   public void execute() {
-    double leftSpeed = leftStick.get() * OperatorConstants.throttleMultiplier;
-    double rightSpeed = rightStick.get() * OperatorConstants.throttleMultiplier;
+    double leftSpeed = leftStick.get() * drive.throttleMultiplier;
+    double rightSpeed = rightStick.get() * drive.throttleMultiplier;
     drive.tankDrive(leftSpeed, rightSpeed);
   }
 

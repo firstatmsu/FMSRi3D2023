@@ -18,7 +18,7 @@ import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.math.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
-import frc.robot.subsystems.DriveCAN;
+import frc.robot.subsystems.Drive;
 
 public final class Autos {
   /** Example static factory for an autonomous command. */
@@ -26,7 +26,7 @@ public final class Autos {
   //   return Commands.sequence(subsystem.exampleMethodCommand(), new ExampleCommand(subsystem));
   // }
 
-  public static CommandBase autonTest(DriveCAN drive) {
+  public static CommandBase autonTest(Drive drive) {
     // Create a voltage constraint to ensure we don't accelerate too fast
     var autoVoltageConstraint =
         new DifferentialDriveVoltageConstraint(

@@ -29,8 +29,8 @@ public class ArcadeDrive extends CommandBase {
 
   @Override
   public void execute() {
-    double throttleSpeed = throttleStick.get() * OperatorConstants.throttleMultiplier;
-    double rotateSpeed = rotateStick.get() * OperatorConstants.rotateMultiplier;
+    double throttleSpeed = throttleStick.get() * drive.throttleMultiplier;
+    double rotateSpeed = rotateStick.get() * drive.rotateMultiplier;
 
     drive.arcadeDrive(throttleSpeed, rotateSpeed);;
   }

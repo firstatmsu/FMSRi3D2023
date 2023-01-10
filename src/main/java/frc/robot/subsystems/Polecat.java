@@ -5,11 +5,14 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.EncoderConstants;
 import frc.robot.Constants.IdentifierConstants;
 
 public class Polecat extends SubsystemBase {
@@ -18,9 +21,14 @@ public class Polecat extends SubsystemBase {
   protected final DigitalInput lowerLimitSwitch;
 
   private final CANSparkMax poleCat;
+  private final RelativeEncoder encoder;
 
   public Polecat() {
     poleCat = new CANSparkMax(IdentifierConstants.polecat, MotorType.kBrushless);
+    encoder = poleCat.getEncoder();
+    encoder.setPositionConversionFactor(EncoderConstants.poleCat);
+    encoder.setPosition(0);
+
     upperLimitSwitch = new DigitalInput(IdentifierConstants.polecatUpperSwitch);
     lowerLimitSwitch = new DigitalInput(IdentifierConstants.polecatLowerSwitch);
   }
@@ -28,6 +36,10 @@ public class Polecat extends SubsystemBase {
   public enum Direction {
     kUp,
     kDown,
+  }
+
+  public double getPosition() {
+    return encoder.getPosition();
   }
 
   public void movePoleCat(double speed) {
@@ -40,6 +52,11 @@ public class Polecat extends SubsystemBase {
 
   public void stopPoleCat() {
     poleCat.stopMotor();
+  }
+
+  @Override
+  public void periodic() {
+    SmartDashboard.putNumber("PolecatPosition", Math.toDegrees(getPosition()));
   }
 
 }

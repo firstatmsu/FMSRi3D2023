@@ -15,24 +15,32 @@ package frc.robot;
 public final class Constants {
   public static class OperatorConstants {
     public static final int controllerPort = 0;
+    public static final double driveDeadband = 0.1;
 
-    public static final double throttleMultiplier = 0.5;
-    public static final double rotateMultiplier = 0.5;
+    public static final double defaultThrottle = 0.8;
+    public static final double defaultRotate = 0.8;
+    public static final double slowThrottle = 0.4;
+    public static final double slowRotate = 0.4;
 
-    public static final double poleCatSpeed = 0.1;
+    public static final double poleCatSpeed = 1;
     public static final double poleCatMaxDist = 5;
     public static final double poleCatMinDist = 0;
   }
 
+  public static class EncoderConstants {
+    public static final double poleCat = (1./10.) * 2 * Math.PI;
+    public static final double encoder = (1./10.75) * (6 * 2.54 * (Math.PI)) * (1./42.);
+  }
+
   public static class IdentifierConstants {
-    public static final int driveFL = 0;
-    public static final int driveFR = 1;
-    public static final int driveBL = 2;
-    public static final int driveBR = 3;
+    public static final int driveFL = 7;
+    public static final int driveFR = 6;
+    public static final int driveBL = 1;
+    public static final int driveBR = 10;
 
     // Catapult 
-    public static final int solenoidForward = 0;
-    public static final int solenoidReverse = 1;
+    public static final int solenoidForward = 1;
+    public static final int solenoidReverse = 0;
 
     // Polecat 
     public static final int polecat = 5;
@@ -42,8 +50,5 @@ public final class Constants {
 
   public static class DriveConstants {
     public static final double trackWidth = 0;
-
-    // If gear ratio is wrong, use 8.45
-    public static final double encoder = 4096 * (1./10.75) * (6 * 2.54 * (2*Math.PI));
   }
 }
