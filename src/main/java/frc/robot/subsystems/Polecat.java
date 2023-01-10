@@ -4,6 +4,9 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -14,10 +17,10 @@ public class Polecat extends SubsystemBase {
   protected final DigitalInput upperLimitSwitch;
   protected final DigitalInput lowerLimitSwitch;
 
-  private final PWMSparkMax poleCat;
+  private final CANSparkMax poleCat;
 
   public Polecat() {
-    poleCat = new PWMSparkMax(IdentifierConstants.polecat);
+    poleCat = new CANSparkMax(IdentifierConstants.polecat, MotorType.kBrushless);
     upperLimitSwitch = new DigitalInput(IdentifierConstants.polecatUpperSwitch);
     lowerLimitSwitch = new DigitalInput(IdentifierConstants.polecatLowerSwitch);
   }

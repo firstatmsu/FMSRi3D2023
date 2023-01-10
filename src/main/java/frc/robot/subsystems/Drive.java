@@ -29,8 +29,12 @@ public class Drive extends SubsystemBase {
     backLeft = new PWMSparkMax(IdentifierConstants.driveBL);
     backRight = new PWMSparkMax(IdentifierConstants.driveBR);
 
+    // backLeft.setInverted(true);
+    // backRight.setInverted(true);
+
     left = new MotorControllerGroup(frontLeft, backLeft);
     right = new MotorControllerGroup(frontRight, backRight);
+    left.setInverted(true);
 
     diffDrive = new DifferentialDrive(left, right);
     diffDrive.setSafetyEnabled(false);
@@ -47,6 +51,13 @@ public class Drive extends SubsystemBase {
 
   public void arcadeDrive(double throttleSpeed, double rotateSpeed) {
     diffDrive.arcadeDrive(throttleSpeed, rotateSpeed);
+  }
+
+  public void setAll() {
+    frontLeft.set(0.5);
+    frontRight.set(0.5);
+    backLeft.set(0.5);
+    backRight.set(0.5);
   }
 
   public void zero() {

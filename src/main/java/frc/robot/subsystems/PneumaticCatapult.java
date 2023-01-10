@@ -13,7 +13,7 @@ public class PneumaticCatapult extends SubsystemBase {
   /** Creates a new PneumaticCatapult. */
   private final DoubleSolenoid pneumaticCatapult;
   public PneumaticCatapult() {
-    pneumaticCatapult = new DoubleSolenoid(PneumaticsModuleType.REVPH, IdentifierConstants.solenoidForward, IdentifierConstants.solenoidReverse);
+    pneumaticCatapult = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, IdentifierConstants.solenoidForward, IdentifierConstants.solenoidReverse);
   }
 
   public void launch() {

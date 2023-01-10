@@ -16,19 +16,19 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int controllerPort = 0;
 
-    public static final double throttleMultiplier = 0.1;
-    public static final double rotateMultiplier = 0.1;
+    public static final double throttleMultiplier = 0.5;
+    public static final double rotateMultiplier = 0.5;
 
-    public static final double poleCatSpeed = 0.2;
+    public static final double poleCatSpeed = 0.1;
     public static final double poleCatMaxDist = 5;
     public static final double poleCatMinDist = 0;
   }
 
   public static class IdentifierConstants {
-    public static final int driveFL = 1;
-    public static final int driveFR = 2;
-    public static final int driveBL = 3;
-    public static final int driveBR = 4;
+    public static final int driveFL = 0;
+    public static final int driveFR = 1;
+    public static final int driveBL = 2;
+    public static final int driveBR = 3;
 
     // Catapult 
     public static final int solenoidForward = 0;

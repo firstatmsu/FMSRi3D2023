@@ -40,7 +40,8 @@ public class PoleCatCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return polecat.isLimited(direction);
+    return false;
+    // return polecat.isLimited(direction);
   }
 
   // Called once the command ends or is interrupted.
