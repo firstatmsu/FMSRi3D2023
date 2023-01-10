@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.PoleCatCommand;
-import frc.robot.commands.PolecatPID;
+// import frc.robot.commands.PolecatPID;
 import frc.robot.commands.TankDrive;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.PneumaticCatapult;
@@ -38,13 +38,16 @@ public class RobotContainer {
     InstantCommand retract = new InstantCommand(catapult::retract, catapult);
     driverController.a().onTrue(launch.andThen(Commands.waitSeconds(0.5)).andThen(retract));
 
+
     // Polecat
-        PoleCatCommand poleUp = new PoleCatCommand(polecat,Direction.kUp);
-    PoleCatCommand poleDown = new PoleCatCommand(polecat,Direction.kDown);
+    PoleCatCommand poleUp = new PoleCatCommand(polecat,0.4);
+    PoleCatCommand poleDown = new PoleCatCommand(polecat,-0.4);
+    PoleCatCommand slowPoleUp = new PoleCatCommand(polecat, 0.3);
+    PoleCatCommand slowPoleDown = new PoleCatCommand(polecat, -0.3);
     // PolecatPID poleUp = new PolecatPID(polecat,0);
     // PolecatPID poleDown = new PolecatPID(polecat,0);
-    driverController.x().whileTrue(poleUp);
-    driverController.y().whileTrue(poleDown);
+    driverController.x().whileTrue(slowPoleUp);
+    driverController.y().whileTrue(slowPoleDown);
     // driverController.x().onTrue(poleDown).onFalse(poleUp);
 
     // InstantCommand go = new InstantCommand(drive::setAll, drive);

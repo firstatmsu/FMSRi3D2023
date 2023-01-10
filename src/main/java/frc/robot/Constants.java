@@ -22,7 +22,7 @@ public final class Constants {
     public static final double slowThrottle = 0.4;
     public static final double slowRotate = 0.4;
 
-    public static final double poleCatSpeed = 1;
+    // public static final double poleCatSpeed = 1;
     public static final double poleCatMaxDist = 5;
     public static final double poleCatMinDist = 0;
   }

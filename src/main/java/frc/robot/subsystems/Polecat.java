@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -20,14 +22,16 @@ public class Polecat extends SubsystemBase {
   protected final DigitalInput upperLimitSwitch;
   protected final DigitalInput lowerLimitSwitch;
 
-  private final CANSparkMax poleCat;
-  private final RelativeEncoder encoder;
+  // private final CANSparkMax poleCat;
+  private final VictorSPX poleCat;
+  // private final RelativeEncoder encoder;
 
   public Polecat() {
-    poleCat = new CANSparkMax(IdentifierConstants.polecat, MotorType.kBrushless);
-    encoder = poleCat.getEncoder();
-    encoder.setPositionConversionFactor(EncoderConstants.poleCat);
-    encoder.setPosition(0);
+    // poleCat = new CANSparkMax(IdentifierConstants.polecat, MotorType.kBrushless);
+    poleCat = new VictorSPX(IdentifierConstants.polecat);
+    // encoder = poleCat.getEncoder();
+    // encoder.setPositionConversionFactor(EncoderConstants.poleCat);
+    // encoder.setPosition(0);
 
     upperLimitSwitch = new DigitalInput(IdentifierConstants.polecatUpperSwitch);
     lowerLimitSwitch = new DigitalInput(IdentifierConstants.polecatLowerSwitch);
@@ -38,12 +42,13 @@ public class Polecat extends SubsystemBase {
     kDown,
   }
 
-  public double getPosition() {
-    return encoder.getPosition();
-  }
+  // public double getPosition() {
+  //   return encoder.getPosition();
+  // }
 
   public void movePoleCat(double speed) {
-    poleCat.set(speed);
+    // poleCat.set(speed);
+    poleCat.set(ControlMode.PercentOutput, speed);
   }
 
   public boolean isLimited(Direction direction) {
@@ -51,12 +56,13 @@ public class Polecat extends SubsystemBase {
   }
 
   public void stopPoleCat() {
-    poleCat.stopMotor();
+    // poleCat.stopMotor();
+    poleCat.set(ControlMode.PercentOutput, 0);
   }
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("PolecatPosition", Math.toDegrees(getPosition()));
+    // SmartDashboard.putNumber("PolecatPosition", Math.toDegrees(getPosition()));
   }
 
 }

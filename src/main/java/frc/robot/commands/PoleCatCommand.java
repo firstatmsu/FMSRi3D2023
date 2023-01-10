@@ -15,27 +15,28 @@ public class PoleCatCommand extends CommandBase {
    * Creates a new RunConveyorCommand.
    */
   private final Polecat polecat;
-  private final Direction direction; 
+  private final double speed; 
 
-  public PoleCatCommand(Polecat polecat, Direction direction) {
-    this.direction = direction;
+  public PoleCatCommand(Polecat polecat, double speed) {
     this.polecat = polecat;
+    this.speed = speed;
     addRequirements(polecat);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    switch (direction) {
-      case kUp:
-        polecat.movePoleCat(OperatorConstants.poleCatSpeed);
-        break;
-      case kDown:
-        polecat.movePoleCat(-OperatorConstants.poleCatSpeed);
-        break;
-      default:
-        break;
-    }
+    // switch (direction) {
+    //   case kUp:
+    //     polecat.movePoleCat();
+    //     break;
+    //   case kDown:
+    //     polecat.movePoleCat(-OperatorConstants.poleCatSpeed);
+    //     break;
+    //   default:
+    //     break;
+    // }
+    polecat.movePoleCat(-speed);
   }
 
   @Override
