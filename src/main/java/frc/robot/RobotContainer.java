@@ -40,14 +40,15 @@ public class RobotContainer {
 
 
     // Polecat
-    PoleCatCommand poleUp = new PoleCatCommand(polecat,0.4);
-    PoleCatCommand poleDown = new PoleCatCommand(polecat,-0.4);
+    // PoleCatCommand poleUp = new PoleCatCommand(polecat,0.4);
+    // PoleCatCommand poleDown = new PoleCatCommand(polecat,-0.4);
     PoleCatCommand slowPoleUp = new PoleCatCommand(polecat, 0.3);
     PoleCatCommand slowPoleDown = new PoleCatCommand(polecat, -0.3);
     // PolecatPID poleUp = new PolecatPID(polecat,0);
     // PolecatPID poleDown = new PolecatPID(polecat,0);
     driverController.x().whileTrue(slowPoleUp);
     driverController.y().whileTrue(slowPoleDown);
+    driverController.b().onTrue(slowPoleDown.withTimeout(0.3).andThen(slowPoleUp.withTimeout(0.1)));
     // driverController.x().onTrue(poleDown).onFalse(poleUp);
 
     // InstantCommand go = new InstantCommand(drive::setAll, drive);
