@@ -27,6 +27,9 @@ public class RobotContainer {
   private final CommandXboxController driverController =
       new CommandXboxController(OperatorConstants.controllerPort);
 
+  private final CommandXboxController opController = 
+      new CommandXboxController(OperatorConstants.operatorPort);
+
   public RobotContainer() {
     configureBindings();
     CameraServer.startAutomaticCapture();
@@ -36,7 +39,7 @@ public class RobotContainer {
     // Pneumatic catapult
     InstantCommand launch = new InstantCommand(catapult::launch, catapult);
     InstantCommand retract = new InstantCommand(catapult::retract, catapult);
-    driverController.a().onTrue(launch.andThen(Commands.waitSeconds(0.5)).andThen(retract));
+    opController.a().onTrue(launch.andThen(Commands.waitSeconds(0.5)).andThen(retract));
 
 
     // Polecat
@@ -46,9 +49,9 @@ public class RobotContainer {
     PoleCatCommand slowPoleDown = new PoleCatCommand(polecat, -0.3);
     // PolecatPID poleUp = new PolecatPID(polecat,0);
     // PolecatPID poleDown = new PolecatPID(polecat,0);
-    driverController.x().whileTrue(slowPoleUp);
-    driverController.y().whileTrue(slowPoleDown);
-    driverController.b().onTrue(slowPoleDown.withTimeout(0.3).andThen(slowPoleUp.withTimeout(0.1)));
+    opController.x().whileTrue(slowPoleUp);
+    opController.y().whileTrue(slowPoleDown);
+    // driverController.b().onTrue(slowPoleDown.withTimeout(0.4).andThen(slowPoleUp.withTimeout(0.1)));
     // driverController.x().onTrue(poleDown).onFalse(poleUp);
 
     // InstantCommand go = new InstantCommand(drive::setAll, drive);

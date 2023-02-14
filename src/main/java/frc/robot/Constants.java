@@ -15,6 +15,7 @@ package frc.robot;
 public final class Constants {
   public static class OperatorConstants {
     public static final int controllerPort = 0;
+    public static final int operatorPort = 1;
     public static final double driveDeadband = 0.1;
 
     public static final double defaultThrottle = 0.8;
