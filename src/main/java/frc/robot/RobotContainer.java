@@ -5,12 +5,15 @@
 package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.Autons;
 import frc.robot.commands.PoleCatCommand;
 // import frc.robot.commands.PolecatPID;
 import frc.robot.commands.TankDrive;
@@ -23,6 +26,7 @@ public class RobotContainer {
   private final Drive drive = new Drive();
   public final PneumaticCatapult catapult = new PneumaticCatapult();
   private final Polecat polecat = new Polecat();
+  private final SendableChooser<Command> chooser = new SendableChooser<>();
 
   private final CommandXboxController driverController =
       new CommandXboxController(OperatorConstants.controllerPort);
@@ -33,6 +37,12 @@ public class RobotContainer {
   public RobotContainer() {
     configureBindings();
     CameraServer.startAutomaticCapture();
+  }
+
+  public void robotInit() {
+    chooser.addOption("Drive Forwards", Autons.forwardAuton(drive));
+    chooser.addOption("Shoot, Drive Backwards", Autons.shootBackward(drive, catapult));
+    SmartDashboard.putData("Choose Auton", chooser);
   }
 
   private void configureBindings() {
@@ -69,6 +79,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return null;
+    return chooser.getSelected();
   }
 }
