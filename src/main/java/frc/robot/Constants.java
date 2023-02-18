@@ -20,8 +20,8 @@ public final class Constants {
 
     public static final double defaultThrottle = 0.8;
     public static final double defaultRotate = 0.8;
-    public static final double slowThrottle = 0.4;
-    public static final double slowRotate = 0.4;
+    public static final double slowThrottle = 1;
+    public static final double slowRotate = 0.8;
 
     // public static final double poleCatSpeed = 1;
     public static final double poleCatMaxDist = 5;

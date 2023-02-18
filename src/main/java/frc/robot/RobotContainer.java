@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.ArcadeDrive;
@@ -41,7 +42,9 @@ public class RobotContainer {
 
   public void robotInit() {
     chooser.addOption("Drive Forwards", Autons.forwardAuton(drive));
-    chooser.addOption("Shoot, Drive Backwards", Autons.shootBackward(drive, catapult));
+    chooser.setDefaultOption("Shoot, Drive Backwards", Autons.shootBackward(drive, catapult));
+    chooser.addOption("Only Shoot", Autons.shootOnly(catapult));
+    chooser.addOption("Push Drive", Autons.pushDrive(drive));
     SmartDashboard.putData("Choose Auton", chooser);
   }
 
@@ -55,13 +58,15 @@ public class RobotContainer {
     // Polecat
     // PoleCatCommand poleUp = new PoleCatCommand(polecat,0.4);
     // PoleCatCommand poleDown = new PoleCatCommand(polecat,-0.4);
-    PoleCatCommand slowPoleUp = new PoleCatCommand(polecat, 0.3);
+    PoleCatCommand slowPoleUp = new PoleCatCommand(polecat, 0.4);
     PoleCatCommand slowPoleDown = new PoleCatCommand(polecat, -0.3);
+    PoleCatCommand timedPoleUp = new PoleCatCommand(polecat, 0.3);
+    PoleCatCommand timedPoleDown = new PoleCatCommand(polecat, -0.3);
     // PolecatPID poleUp = new PolecatPID(polecat,0);
     // PolecatPID poleDown = new PolecatPID(polecat,0);
     opController.x().whileTrue(slowPoleUp);
     opController.y().whileTrue(slowPoleDown);
-    // driverController.b().onTrue(slowPoleDown.withTimeout(0.4).andThen(slowPoleUp.withTimeout(0.1)));
+    opController.b().onTrue(timedPoleDown.withTimeout(0.4));
     // driverController.x().onTrue(poleDown).onFalse(poleUp);
 
     // InstantCommand go = new InstantCommand(drive::setAll, drive);
@@ -79,6 +84,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return chooser.getSelected();
+    return new WaitCommand(4).andThen(chooser.getSelected());
   }
 }
